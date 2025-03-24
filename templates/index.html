@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grading Model Integration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Grading Model Integration</h1>
+        <p class="description">Enter a question, the desired answer, and the student's answer to get a numerical grade (1-5).</p>
+
+        <form method="POST" action="/">
+            <div class="form-group">
+                <label for="question">Question:</label>
+                <textarea id="question" name="question" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="desired_answer">Desired Answer:</label>
+                <textarea id="desired_answer" name="desired_answer" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="student_answer">Student Answer:</label>
+                <textarea id="student_answer" name="student_answer" rows="3" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Calculate Grade</button>
+        </form>
+
+        {% if grade is not none %}
+        <div class="result">
+            <h2>Grading Result</h2>
+            <div class="grade-display">
+                <span class="grade-label">Numerical Grade:</span>
+                <span class="grade-value">{{ grade }}</span>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="info-box">
+            <h3>About this Application</h3>
+            <p>This application uses a machine learning model to evaluate student answers and assign a numerical grade from 1 to 5.</p>
+            <p>The model analyzes the question, the desired answer, and the student's response to determine the grade.</p>
+        </div>
+    </div>
+</body>
+</html>
